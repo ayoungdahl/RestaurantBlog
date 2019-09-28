@@ -11,6 +11,5 @@ restaurant_csv_filepath = os.environ.get('RESTAURANT_CSV_FILEPATH') or ('csv_dat
 con = sqlite3.connect(restaurant_db_filepath)
 restaurant_df = pandas.read_csv(restaurant_csv_filepath, index_col='placeID')
 restaurant_df.drop(['the_geom_meter'], axis=1, inplace=True)
-restaurant_df.rename(columns={'Rambience': 'ambience'}, inplace=True)
-print(restaurant_df.columns)
+restaurant_df.rename(columns={'zip': 'zip_code', 'Rambience': 'ambience'}, inplace=True)
 restaurant_df.to_sql('Restaurant', con, if_exists=if_exists)
